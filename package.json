@@ -2,6 +2,7 @@
   "name": "14_chatbot_for_website_demo_project",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,6 +10,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@google/genai": "^1.42.0",
+    "lucide-react": "^0.575.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
