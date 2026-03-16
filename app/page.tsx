@@ -30,9 +30,16 @@ export default function Home() {
     Your role:
     - Greet the user professionally.
     - Answer questions about services and pricing.
-    - If user shows interest, ask for their name and email for consultation.
+    - If user shows interest, ask for their name, email and phone for consultation.
     - Keep responses short and professional.
-
+    - if user gives contact details, then respond with a clean json object for i can store them in database.
+    - and IMPORTANT: Return ONLY valid JSON. No explanation text.
+    Format:
+    {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "phone": "+91 8290727961"
+    }
     Start by greeting the user.
     `;
 
@@ -79,6 +86,15 @@ export default function Home() {
     return;
   };
 
+  function isJSON(str: unknown): boolean {
+    try {
+      JSON.parse(`${str}`);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   const handleSend = async () => {
     if (!input.trim()) return;
 
@@ -112,8 +128,29 @@ export default function Home() {
       }
 
       const data = await res.json();
+      if (isJSON(data.reply)) {
 
-      setMessages([...newMessages, { role: "assistant", content: data.reply }]);
+        const leadInfo = data.reply;
+
+          await fetch("/api/saveLead", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(leadInfo),
+          });
+
+        setMessages([
+          ...newMessages,
+          {
+            role: "assistant",
+            content: "Lead captured! We will contact you soon.",
+          },
+        ]);
+      } else {
+        setMessages([
+          ...newMessages,
+          { role: "assistant", content: data.reply },
+        ]);
+      }
     } catch (error) {
       setError("Failed to send message. Please try again.");
       console.error("Error:", error);
