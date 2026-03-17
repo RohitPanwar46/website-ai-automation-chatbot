@@ -216,8 +216,8 @@ export default function Home() {
       </section>
 
       {/* CHAT BUTTON */}
-      <div className="fixed bottom-8 right-8 z-50">
-        <button className="w-16 cursor-pointer h-16 rounded-full bg-white shadow-xl border border-gray-200 flex items-center justify-center hover:scale-105 transition">
+      <div className="fixed bottom-4 right-4 z-50 sm:bottom-8 sm:right-8">
+        <button className="w-16 h-16 cursor-pointer rounded-full bg-white shadow-xl border border-gray-200 flex items-center justify-center hover:scale-105 transition">
           {open ? (
             <X
               onClick={() => setOpen(false)}
@@ -236,7 +236,7 @@ export default function Home() {
 
       {/* CHAT WINDOW */}
       {open && (
-        <div className="fixed h-[500px] bottom-28 right-8 w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col">
+        <div className="fixed h-[72vh] max-h-[85vh] sm:h-[500px] bottom-20 sm:bottom-28 right-1.5 sm:right-8 w-[calc(100vw-1.5rem)] sm:w-96 max-w-[95vw] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col">
           <div className="p-4 border-b border-gray-200 flex items-center gap-2 font-medium">
             <Bot size={20} className="text-blue-600" />
             AI Assistant
