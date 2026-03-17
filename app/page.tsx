@@ -181,7 +181,7 @@ export default function Home() {
 
         <button
           onClick={() => handleOpen()}
-          className="px-8 py-3 rounded-full bg-black text-white hover:opacity-80 transition"
+          className="px-8 cursor-pointer py-3 rounded-full bg-black text-white hover:opacity-80 transition"
         >
           Try Live Chat
         </button>
@@ -217,7 +217,7 @@ export default function Home() {
 
       {/* CHAT BUTTON */}
       <div className="fixed bottom-8 right-8 z-50">
-        <button className="w-16 h-16 rounded-full bg-white shadow-xl border border-gray-200 flex items-center justify-center hover:scale-105 transition">
+        <button className="w-16 cursor-pointer h-16 rounded-full bg-white shadow-xl border border-gray-200 flex items-center justify-center hover:scale-105 transition">
           {open ? (
             <X
               onClick={() => setOpen(false)}
